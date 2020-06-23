@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.145.
- */
 package net.rom.lib.random;
 
 import java.util.stream.DoubleStream;
@@ -24,7 +21,7 @@ public interface IRandom {
 	 * @return a stream of {@code double} values
 	 * @throws IllegalArgumentException if {@code streamSize} is
 	 *                                  less than zero
-	 * @since 1.8
+
 	 */
 	DoubleStream doubles(long streamSize);
 
@@ -39,7 +36,7 @@ public interface IRandom {
 	 * @return a stream of pseudorandom {@code double} values
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * doubles(Long.MAX_VALUE)}.
-	 * @since 1.8
+
 	 */
 	DoubleStream doubles();
 
@@ -68,7 +65,7 @@ public interface IRandom {
 	 *                                  less than zero
 	 * @throws IllegalArgumentException if {@code randomNumberOrigin}
 	 *                                  is greater than or equal to {@code randomNumberBound}
-	 * @since 1.8
+
 	 */
 	DoubleStream doubles(long streamSize, double randomNumberOrigin, double randomNumberBound);
 
@@ -96,7 +93,7 @@ public interface IRandom {
 	 *                                  is greater than or equal to {@code randomNumberBound}
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * doubles(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
-	 * @since 1.8
+
 	 */
 	DoubleStream doubles(double randomNumberOrigin, double randomNumberBound);
 
@@ -139,7 +136,7 @@ public interface IRandom {
 	 * @return a stream of pseudorandom {@code int} values
 	 * @throws IllegalArgumentException if {@code streamSize} is
 	 *                                  less than zero
-	 * @since 1.8
+
 	 */
 	IntStream ints(long streamSize);
 
@@ -153,7 +150,7 @@ public interface IRandom {
 	 * @return a stream of pseudorandom {@code int} values
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * ints(Long.MAX_VALUE)}.
-	 * @since 1.8
+
 	 */
 	IntStream ints();
 
@@ -187,7 +184,7 @@ public interface IRandom {
 	 * @throws IllegalArgumentException if {@code streamSize} is
 	 *                                  less than zero, or {@code randomNumberOrigin}
 	 *                                  is greater than or equal to {@code randomNumberBound}
-	 * @since 1.8
+
 	 */
 	IntStream ints(long streamSize, int randomNumberOrigin, int randomNumberBound);
 
@@ -221,7 +218,7 @@ public interface IRandom {
 	 *                                  is greater than or equal to {@code randomNumberBound}
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * ints(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
-	 * @since 1.8
+
 	 */
 	IntStream ints(int randomNumberOrigin, int randomNumberBound);
 
@@ -236,7 +233,7 @@ public interface IRandom {
 	 * @return a stream of pseudorandom {@code long} values
 	 * @throws IllegalArgumentException if {@code streamSize} is
 	 *                                  less than zero
-	 * @since 1.8
+
 	 */
 	LongStream longs(long streamSize);
 
@@ -250,7 +247,7 @@ public interface IRandom {
 	 * @return a stream of pseudorandom {@code long} values
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * longs(Long.MAX_VALUE)}.
-	 * @since 1.8
+
 	 */
 	LongStream longs();
 
@@ -289,7 +286,7 @@ public interface IRandom {
 	 * @throws IllegalArgumentException if {@code streamSize} is
 	 *                                  less than zero, or {@code randomNumberOrigin}
 	 *                                  is greater than or equal to {@code randomNumberBound}
-	 * @since 1.8
+
 	 */
 	LongStream longs(long streamSize, long randomNumberOrigin, long randomNumberBound);
 
@@ -328,7 +325,7 @@ public interface IRandom {
 	 *                                  is greater than or equal to {@code randomNumberBound}
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * longs(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
-	 * @since 1.8
+
 	 */
 	LongStream longs(long randomNumberOrigin, long randomNumberBound);
 

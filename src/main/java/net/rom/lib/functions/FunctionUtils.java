@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.145.
- */
 package net.rom.lib.functions;
 
 
