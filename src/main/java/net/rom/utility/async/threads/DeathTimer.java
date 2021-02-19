@@ -6,9 +6,9 @@ import net.rom.utility.annotations.DocsNeeded;
 
 @DocsNeeded
 public class DeathTimer {
-	private final Runnable onTimeout;
-	private final long timeout;
-	private boolean updated = false, armed = true;
+	private transient final Runnable onTimeout;
+	private transient final long timeout;
+	private transient boolean updated = false, armed = true;
 
 	public DeathTimer(long timeout, Runnable onTimeout) {
 		Objects.requireNonNull(onTimeout, "onTimeout");

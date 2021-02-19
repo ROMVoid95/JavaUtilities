@@ -106,11 +106,9 @@ public class CollectionUtils {
 		return (int) Math.floor(Math.random() * size);
 	}
 
-	@SuppressWarnings("unused")
 	public static <T> Comparator<T> randomOrder() {
 		ThreadLocalRandom r = ThreadLocalRandom.current();
 		int x = r.nextInt(), y = r.nextInt();
-		boolean b = r.nextBoolean();
 		return Comparator.comparingInt((T t) -> t.hashCode() ^ x)
 			.thenComparingInt(s -> s.toString().length() ^ y);
 	}

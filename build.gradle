@@ -1,29 +1,107 @@
 plugins {
-    id 'java'
+    id 'java-library'
+	id 'eclipse' // optional (to generate Eclipse project files)
+	id 'idea' // optional (to generate IntelliJ IDEA project files)
     id 'maven-publish'
 }
 
+import org.apache.tools.ant.filters.ReplaceTokens
+
+def javaVersion = project.findProperty("javaVersion") ?: JavaVersion.VERSION_1_8
+def majorJavaVersion = javaVersion.getMajorVersion()
+def majorJavaVersionInt = majorJavaVersion.toInteger()
+
+group = 'net.rom.utility'
+version = '3.0.0'
+description = 'Java Utilities'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 repositories {
     mavenLocal()
+	mavenCentral()
+	jcenter()
     maven {
         url = 'http://repo.maven.apache.org/maven2'
     }
 }
 
-group = 'net.rom.utility'
-version = '1.0.0'
-description = 'Java Utilities'
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.16'
+	annotationProcessor 'org.projectlombok:lombok:1.18.16'
+	
+	testCompileOnly 'org.projectlombok:lombok:1.18.16'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+	
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.12.1'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+	implementation 'com.google.guava:guava:30.1-jre'
+	implementation 'org.slf4j:slf4j-api:2.0.0-alpha1'
+	
+	implementation 'info.picocli:picocli:3.9.6'
+}
 
-sourceCompatibility = '1.8'
+gradle.afterProject {
+	def url = new URL(
+			"https://raw.githubusercontent.com/ReadOnlyDevelopment/Misc/master/.editorconfig"
+	)
+	def file = new File(".editorconfig")
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
+	url.withInputStream { input ->
+		file.withOutputStream {
+			it << input
+		}
+	}
 }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+	options.compilerArgs << "-Xlint:all"
 }
+
+tasks.withType(Javadoc) {
+	failOnError false
+	options.addStringOption('Xdoclint:none', '-quiet')
+	options.addStringOption('encoding', 'UTF-8')
+	options.addStringOption('charSet', 'UTF-8')
+}
+
+javadoc.options {
+	source = majorJavaVersion
+	encoding = "UTF-8"
+	docTitle = windowTitle = "${project.name} ${project.version}"
+
+	if (majorJavaVersionInt > 10) {
+		links = ["https://docs.oracle.com/en/java/javase/${majorJavaVersion}/docs/api".toString()]
+	} else {
+		links = ["https://docs.oracle.com/javase/${majorJavaVersion}/docs/api/".toString()]
+	}
+
+	links << "https://checkerframework.org/api/"
+}
+
+task processSource(type: Sync) {
+	from sourceSets.main.java
+	inputs.property "version", version
+	filter(ReplaceTokens, tokens: [VERSION: version])
+	into "$buildDir/src"
+}
+
+task javadocJar(type: Jar) {
+	archiveClassifier.set("javadoc")
+
+	from javadoc
+}
+
+artifacts {
+	archives javadocJar
+}
+
+compileJava {
+	sourceCompatibility = javaVersion
+	targetCompatibility = javaVersion
+	source = processSource.outputs
+}
+
+apply from: "publishing.gradle"

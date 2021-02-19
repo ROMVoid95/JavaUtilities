@@ -9,8 +9,8 @@ import net.rom.utility.async.threads.ScheduledTaskProcessor;
 public class RateLimiter {
 	private static final ScheduledTaskProcessor TASK_PROCESSOR = new ScheduledTaskProcessor("RateLimiter");
 
-	private final Map<String, AtomicInteger> idsRateLimited = new HashMap<>();
-	private final int max, timeout;
+	private transient final Map<String, AtomicInteger> idsRateLimited = new HashMap<>();
+	private transient final int max, timeout;
 
 	public RateLimiter(int max, int timeout) {
 		this.max = max;

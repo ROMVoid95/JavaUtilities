@@ -1,7 +1,10 @@
 package net.rom.utility.misc;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RGB {
 	
@@ -180,22 +183,57 @@ public class RGB {
 	private final float blue;
 	private final float alpha;
 
+	/**
+	 * Instantiates a new RGB.
+	 *
+	 * @param color the color
+	 */
 	public RGB(int color) {
 		this((color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
 	}
 
+	/**
+	 * Instantiates a new RGB.
+	 *
+	 * @param red   the red
+	 * @param green the green
+	 * @param blue  the blue
+	 */
 	public RGB(int red, int green, int blue) {
 		this(red / 255f, green / 255f, blue / 255f, 1f);
 	}
 
+	/**
+	 * Instantiates a new RGB.
+	 *
+	 * @param red   the red
+	 * @param green the green
+	 * @param blue  the blue
+	 * @param alpha the alpha
+	 */
 	public RGB(int red, int green, int blue, int alpha) {
 		this(red / 255f, green / 255f, blue / 255f, alpha / 255f);
 	}
 
+	/**
+	 * Instantiates a new RGB.
+	 *
+	 * @param red   the red
+	 * @param green the green
+	 * @param blue  the blue
+	 */
 	public RGB(float red, float green, float blue) {
 		this(red, green, blue, 1f);
 	}
 
+	/**
+	 * Instantiates a new RGB.
+	 *
+	 * @param red   the red
+	 * @param green the green
+	 * @param blue  the blue
+	 * @param alpha the alpha
+	 */
 	public RGB(float red, float green, float blue, float alpha) {
 		this.red   = red;
 		this.green = green;
@@ -203,6 +241,11 @@ public class RGB {
 		this.alpha = alpha;
 	}
 	
+	/**
+	 * Get the RGB color.
+	 *
+	 * @return the color
+	 */
 	public int getColor () {
 		int r = (int) (red * 255f) << 16;
 		int g = (int) (green * 255f) << 8;
@@ -210,6 +253,11 @@ public class RGB {
 		return r + g + b;
 	}
 
+	/**
+	 * Get the color with Alpha.
+	 *
+	 * @return the color with Alpha
+	 */
 	public int getColorWithA () {
 		int a = (int) (alpha * 255f) << 24;
 		int r = (int) (red * 255f) << 16;
@@ -218,48 +266,96 @@ public class RGB {
 		return a + r + g + b;
 	}
 
+	/**
+	 * Get the red.
+	 *
+	 * @return the red
+	 */
 	public float getRed () {
 		return red;
 	}
 
+	/**
+	 * Get the green.
+	 *
+	 * @return the green
+	 */
 	public float getGreen () {
 		return green;
 	}
 
+	/**
+	 * Get the blue.
+	 *
+	 * @return the blue
+	 */
 	public float getBlue () {
 		return blue;
 	}
 
+	/**
+	 * Get the alpha.
+	 *
+	 * @return the alpha
+	 */
 	public float getAlpha () {
 		return alpha;
 	}
 
+	/**
+	 * Get the red int.
+	 *
+	 * @return the red int
+	 */
 	public int getRedInt () {
 		return (int) (red * 255f);
 	}
 
+	/**
+	 * Get the green int.
+	 *
+	 * @return the green int
+	 */
 	public int getGreenInt () {
 		return (int) (green * 255f);
 	}
 
+	/**
+	 * Get the blue int.
+	 *
+	 * @return the blue int
+	 */
 	public int getBlueInt () {
 		return (int) (blue * 255f);
 	}
 
+	/**
+	 * Get the alpha int.
+	 *
+	 * @return the alpha int
+	 */
 	public int getAlphaInt () {
 
 		return (int) (alpha * 255f);
 	}
 
 	/**
-	 * Gets the preset color with the given name. For example,
-	 * {@code Colors.get("red")} will return {@link Colors#RED}.
+	 * Get the preset color with the given name. For example,
+	 * {@code Colors.get("red")} will return {@link RGB#RED}.
+	 *
+	 * @param name the name
+	 * @return the color
 	 */
 	public static RGB getColor(final String name) {
 		return COLORS.get(name);
 	}
 
-	/** Gets the name of the preset matching the given color. */
+	/**
+	 * Get the name of the preset matching the given color.
+	 *
+	 * @param color the color
+	 * @return the name
+	 */
 	public static String getName(final RGB color) {
 		if (color == null) return null;
 		for (final String name : COLORS.keySet()) {
@@ -269,12 +365,20 @@ public class RGB {
 		return null;
 	}
 
-	/** Gets the table of all preset colors. */
+	/**
+	 * Get the table of all preset colors.
+	 *
+	 * @return the map
+	 */
 	public static Map<String, RGB> map() {
 		return Collections.unmodifiableMap(COLORS);
 	}
 
-	/** Gets the list of all preset colors. */
+	/**
+	 * Get the list of all preset colors.
+	 *
+	 * @return the collection
+	 */
 	public static Collection<RGB> values() {
 		return COLORS.values();
 	}

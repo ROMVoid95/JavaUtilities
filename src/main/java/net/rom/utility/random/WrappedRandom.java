@@ -18,8 +18,8 @@ public class WrappedRandom implements IRandom {
 	 * Returns a stream producing the given {@code streamSize} number of
 	 * pseudorandom {@code double} values, each between zero
 	 * (inclusive) and one (exclusive).
-	 * <p>
-	 * <p>A pseudorandom {@code double} value is generated as if it's the result
+	 * <br>
+	 * <br>A pseudorandom {@code double} value is generated as if it's the result
 	 * of calling the method {@link #nextDouble()}.
 	 *
 	 * @param streamSize the number of values to generate
@@ -37,14 +37,14 @@ public class WrappedRandom implements IRandom {
 	 * Returns an effectively unlimited stream of pseudorandom {@code
 	 * double} values, each between zero (inclusive) and one
 	 * (exclusive).
-	 * <p>
-	 * <p>A pseudorandom {@code double} value is generated as if it's the result
+	 * <br>
+	 * <br>A pseudorandom {@code double} value is generated as if it's the result
 	 * of calling the method {@link #nextDouble()}.
 	 *
-	 * @return a stream of pseudorandom {@code double} values
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * doubles(Long.MAX_VALUE)}.
-
+	 * 
+	 * @return a stream of pseudorandom {@code double} values
 	 */
 	@Override
 	public DoubleStream doubles() {
@@ -55,8 +55,8 @@ public class WrappedRandom implements IRandom {
 	 * Returns a stream producing the given {@code streamSize} number of
 	 * pseudorandom {@code double} values, each conforming to the given origin
 	 * (inclusive) and bound (exclusive).
-	 * <p>
-	 * <p>A pseudorandom {@code double} value is generated as if it's the result
+	 * <br>
+	 * <br>A pseudorandom {@code double} value is generated as if it's the result
 	 * of calling the following method with the origin and bound:
 	 * <pre> {@code
 	 * double nextDouble(double origin, double bound) {
@@ -87,8 +87,8 @@ public class WrappedRandom implements IRandom {
 	 * Returns an effectively unlimited stream of pseudorandom {@code
 	 * double} values, each conforming to the given origin (inclusive) and bound
 	 * (exclusive).
-	 * <p>
-	 * <p>A pseudorandom {@code double} value is generated as if it's the result
+	 * <br>
+	 * <br>A pseudorandom {@code double} value is generated as if it's the result
 	 * of calling the following method with the origin and bound:
 	 * <pre> {@code
 	 * double nextDouble(double origin, double bound) {
@@ -101,13 +101,12 @@ public class WrappedRandom implements IRandom {
 	 *
 	 * @param randomNumberOrigin the origin (inclusive) of each random value
 	 * @param randomNumberBound  the bound (exclusive) of each random value
+	 * @implNote This method is implemented to be equivalent to {@code
+	 * doubles(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
 	 * @return a stream of pseudorandom {@code double} values,
 	 * each with the given origin (inclusive) and bound (exclusive)
 	 * @throws IllegalArgumentException if {@code randomNumberOrigin}
 	 *                                  is greater than or equal to {@code randomNumberBound}
-	 * @implNote This method is implemented to be equivalent to {@code
-	 * doubles(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
-
 	 */
 	@Override
 	public DoubleStream doubles(double randomNumberOrigin, double randomNumberBound) {
@@ -136,7 +135,7 @@ public class WrappedRandom implements IRandom {
 	 * and clearing the {@code haveNextNextGaussian} flag used by {@link
 	 * #nextGaussian}.
 	 *
-	 * <p>The implementation of {@code setSeed} by class {@code Random}
+	 * <br>The implementation of {@code setSeed} by class {@code Random}
 	 * happens to use only 48 bits of the given seed. In general, however,
 	 * an overriding method may use all 64 bits of the {@code long}
 	 * argument as a seed value.
@@ -152,8 +151,8 @@ public class WrappedRandom implements IRandom {
 	/**
 	 * Returns a stream producing the given {@code streamSize} number of
 	 * pseudorandom {@code int} values.
-	 * <p>
-	 * <p>A pseudorandom {@code int} value is generated as if it's the result of
+	 * <br>
+	 * <br>A pseudorandom {@code int} value is generated as if it's the result of
 	 * calling the method {@link #nextInt()}.
 	 *
 	 * @param streamSize the number of values to generate
@@ -170,14 +169,13 @@ public class WrappedRandom implements IRandom {
 	/**
 	 * Returns an effectively unlimited stream of pseudorandom {@code int}
 	 * values.
-	 * <p>
-	 * <p>A pseudorandom {@code int} value is generated as if it's the result of
+	 * <br>
+	 * <br>A pseudorandom {@code int} value is generated as if it's the result of
 	 * calling the method {@link #nextInt()}.
 	 *
-	 * @return a stream of pseudorandom {@code int} values
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * ints(Long.MAX_VALUE)}.
-
+	 * @return a stream of pseudorandom {@code int} values
 	 */
 	@Override
 	public IntStream ints() {
@@ -188,8 +186,8 @@ public class WrappedRandom implements IRandom {
 	 * Returns a stream producing the given {@code streamSize} number
 	 * of pseudorandom {@code int} values, each conforming to the given
 	 * origin (inclusive) and bound (exclusive).
-	 * <p>
-	 * <p>A pseudorandom {@code int} value is generated as if it's the result of
+	 * <br>
+	 * <br>A pseudorandom {@code int} value is generated as if it's the result of
 	 * calling the following method with the origin and bound:
 	 * <pre> {@code
 	 * int nextInt(int origin, int bound) {
@@ -225,8 +223,8 @@ public class WrappedRandom implements IRandom {
 	 * Returns an effectively unlimited stream of pseudorandom {@code
 	 * int} values, each conforming to the given origin (inclusive) and bound
 	 * (exclusive).
-	 * <p>
-	 * <p>A pseudorandom {@code int} value is generated as if it's the result of
+	 * <br>
+	 * <br>A pseudorandom {@code int} value is generated as if it's the result of
 	 * calling the following method with the origin and bound:
 	 * <pre> {@code
 	 * int nextInt(int origin, int bound) {
@@ -245,13 +243,12 @@ public class WrappedRandom implements IRandom {
 	 *
 	 * @param randomNumberOrigin the origin (inclusive) of each random value
 	 * @param randomNumberBound  the bound (exclusive) of each random value
+	 * @implNote This method is implemented to be equivalent to {@code
+	 * ints(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
 	 * @return a stream of pseudorandom {@code int} values,
 	 * each with the given origin (inclusive) and bound (exclusive)
 	 * @throws IllegalArgumentException if {@code randomNumberOrigin}
 	 *                                  is greater than or equal to {@code randomNumberBound}
-	 * @implNote This method is implemented to be equivalent to {@code
-	 * ints(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
-
 	 */
 	@Override
 	public IntStream ints(int randomNumberOrigin, int randomNumberBound) {
@@ -261,8 +258,8 @@ public class WrappedRandom implements IRandom {
 	/**
 	 * Returns a stream producing the given {@code streamSize} number of
 	 * pseudorandom {@code long} values.
-	 * <p>
-	 * <p>A pseudorandom {@code long} value is generated as if it's the result
+	 * <br>
+	 * <br>A pseudorandom {@code long} value is generated as if it's the result
 	 * of calling the method {@link #nextLong()}.
 	 *
 	 * @param streamSize the number of values to generate
@@ -279,14 +276,13 @@ public class WrappedRandom implements IRandom {
 	/**
 	 * Returns an effectively unlimited stream of pseudorandom {@code long}
 	 * values.
-	 * <p>
-	 * <p>A pseudorandom {@code long} value is generated as if it's the result
+	 * <br>
+	 * <br>A pseudorandom {@code long} value is generated as if it's the result
 	 * of calling the method {@link #nextLong()}.
 	 *
-	 * @return a stream of pseudorandom {@code long} values
 	 * @implNote This method is implemented to be equivalent to {@code
 	 * longs(Long.MAX_VALUE)}.
-
+	 * @return a stream of pseudorandom {@code long} values
 	 */
 	@Override
 	public LongStream longs() {
@@ -297,8 +293,8 @@ public class WrappedRandom implements IRandom {
 	 * Returns a stream producing the given {@code streamSize} number of
 	 * pseudorandom {@code long}, each conforming to the given origin
 	 * (inclusive) and bound (exclusive).
-	 * <p>
-	 * <p>A pseudorandom {@code long} value is generated as if it's the result
+	 * <br>
+	 * <br>A pseudorandom {@code long} value is generated as if it's the result
 	 * of calling the following method with the origin and bound:
 	 * <pre> {@code
 	 * long nextLong(long origin, long bound) {
@@ -339,8 +335,8 @@ public class WrappedRandom implements IRandom {
 	 * Returns an effectively unlimited stream of pseudorandom {@code
 	 * long} values, each conforming to the given origin (inclusive) and bound
 	 * (exclusive).
-	 * <p>
-	 * <p>A pseudorandom {@code long} value is generated as if it's the result
+	 * <br>
+	 * <br>A pseudorandom {@code long} value is generated as if it's the result
 	 * of calling the following method with the origin and bound:
 	 * <pre> {@code
 	 * long nextLong(long origin, long bound) {
@@ -364,13 +360,12 @@ public class WrappedRandom implements IRandom {
 	 *
 	 * @param randomNumberOrigin the origin (inclusive) of each random value
 	 * @param randomNumberBound  the bound (exclusive) of each random value
+	 * @implNote This method is implemented to be equivalent to {@code
+	 * longs(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
 	 * @return a stream of pseudorandom {@code long} values,
 	 * each with the given origin (inclusive) and bound (exclusive)
 	 * @throws IllegalArgumentException if {@code randomNumberOrigin}
 	 *                                  is greater than or equal to {@code randomNumberBound}
-	 * @implNote This method is implemented to be equivalent to {@code
-	 * longs(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)}.
-
 	 */
 	@Override
 	public LongStream longs(long randomNumberOrigin, long randomNumberBound) {
@@ -384,8 +379,8 @@ public class WrappedRandom implements IRandom {
 	 * {@code boolean} value is pseudorandomly generated and returned.  The
 	 * values {@code true} and {@code false} are produced with
 	 * (approximately) equal probability.
-	 * <p>
-	 * <p>The method {@code nextBoolean} is implemented by class {@code Random}
+	 * <br>
+	 * <br>The method {@code nextBoolean} is implemented by class {@code Random}
 	 * as if by:
 	 * <pre> {@code
 	 * public boolean nextBoolean() {
@@ -406,8 +401,8 @@ public class WrappedRandom implements IRandom {
 	 * Generates random bytes and places them into a user-supplied
 	 * byte array.  The number of random bytes produced is equal to
 	 * the length of the byte array.
-	 * <p>
-	 * <p>The method {@code nextBytes} is implemented by class {@code Random}
+	 * <br>
+	 * <br>The method {@code nextBytes} is implemented by class {@code Random}
 	 * as if by:
 	 * <pre> {@code
 	 * public void nextBytes(byte[] bytes) {
@@ -430,26 +425,26 @@ public class WrappedRandom implements IRandom {
 	 * Returns the next pseudorandom, uniformly distributed
 	 * {@code double} value between {@code 0.0} and
 	 * {@code 1.0} from this random number generator's sequence.
-	 * <p>
-	 * <p>The general contract of {@code nextDouble} is that one
+	 * <br>
+	 * <br>The general contract of {@code nextDouble} is that one
 	 * {@code double} value, chosen (approximately) uniformly from the
 	 * range {@code 0.0d} (inclusive) to {@code 1.0d} (exclusive), is
 	 * pseudorandomly generated and returned.
-	 * <p>
-	 * <p>The method {@code nextDouble} is implemented by class {@code Random}
+	 * <br>
+	 * <br>The method {@code nextDouble} is implemented by class {@code Random}
 	 * as if by:
 	 * <pre> {@code
 	 * public double nextDouble() {
 	 *   return (((long)next(26) << 27) + next(27))
 	 *     / (double)(1L << 53);
 	 * }}</pre>
-	 * <p>
-	 * <p>The hedge "approximately" is used in the foregoing description only
+	 * <br>
+	 * <br>The hedge "approximately" is used in the foregoing description only
 	 * because the {@code next} method is only approximately an unbiased
 	 * source of independently chosen bits. If it were a perfect source of
 	 * randomly chosen bits, then the algorithm shown would choose
 	 * {@code double} values from the stated range with perfect uniformity.
-	 * <p>[In early versions of Java, the result was incorrectly calculated as:
+	 * <br>[In early versions of Java, the result was incorrectly calculated as:
 	 * <pre> {@code
 	 *   return (((long)next(27) << 27) + next(27))
 	 *     / (double)(1L << 54);}</pre>
@@ -474,27 +469,27 @@ public class WrappedRandom implements IRandom {
 	 * Returns the next pseudorandom, uniformly distributed {@code float}
 	 * value between {@code 0.0} and {@code 1.0} from this random
 	 * number generator's sequence.
-	 * <p>
-	 * <p>The general contract of {@code nextFloat} is that one
+	 * <br>
+	 * <br>The general contract of {@code nextFloat} is that one
 	 * {@code float} value, chosen (approximately) uniformly from the
 	 * range {@code 0.0f} (inclusive) to {@code 1.0f} (exclusive), is
 	 * pseudorandomly generated and returned. All 2<sup>24</sup> possible
 	 * {@code float} values of the form <i>m&nbsp;x&nbsp;</i>2<sup>-24</sup>,
 	 * where <i>m</i> is a positive integer less than 2<sup>24</sup>, are
 	 * produced with (approximately) equal probability.
-	 * <p>
-	 * <p>The method {@code nextFloat} is implemented by class {@code Random}
+	 * <br>
+	 * <br>The method {@code nextFloat} is implemented by class {@code Random}
 	 * as if by:
 	 * <pre> {@code
 	 * public float nextFloat() {
 	 *   return next(24) / ((float)(1 << 24));
 	 * }}</pre>
-	 * <p>
-	 * <p>The hedge "approximately" is used in the foregoing description only
+	 * <br>
+	 * <br>The hedge "approximately" is used in the foregoing description only
 	 * because the next method is only approximately an unbiased source of
 	 * independently chosen bits. If it were a perfect source of randomly
 	 * chosen bits, then the algorithm shown would choose {@code float}
-	 * values from the stated range with perfect uniformity.<p>
+	 * values from the stated range with perfect uniformity.<br>
 	 * [In early versions of Java, the result was incorrectly calculated as:
 	 * <pre> {@code
 	 *   return next(30) / ((float)(1 << 30));}</pre>
@@ -516,13 +511,13 @@ public class WrappedRandom implements IRandom {
 	 * Returns the next pseudorandom, Gaussian ("normally") distributed
 	 * {@code double} value with mean {@code 0.0} and standard
 	 * deviation {@code 1.0} from this random number generator's sequence.
-	 * <p>
+	 * <br>
 	 * The general contract of {@code nextGaussian} is that one
 	 * {@code double} value, chosen from (approximately) the usual
 	 * normal distribution with mean {@code 0.0} and standard deviation
 	 * {@code 1.0}, is pseudorandomly generated and returned.
-	 * <p>
-	 * <p>The method {@code nextGaussian} is implemented by class
+	 * <br>
+	 * <br>The method {@code nextGaussian} is implemented by class
 	 * {@code Random} as if by a threadsafe version of the following:
 	 * <pre> {@code
 	 * private double nextNextGaussian;
@@ -568,8 +563,8 @@ public class WrappedRandom implements IRandom {
 	 * contract of {@code nextInt} is that one {@code int} value is
 	 * pseudorandomly generated and returned. All 2<sup>32</sup> possible
 	 * {@code int} values are produced with (approximately) equal probability.
-	 * <p>
-	 * <p>The method {@code nextInt} is implemented by class {@code Random}
+	 * <br>
+	 * <br>The method {@code nextInt} is implemented by class {@code Random}
 	 * as if by:
 	 * <pre> {@code
 	 * public int nextInt() {
@@ -608,19 +603,19 @@ public class WrappedRandom implements IRandom {
 	 *   } while (bits - val + (bound-1) < 0);
 	 *   return val;
 	 * }}</pre>
-	 * <p>
-	 * <p>The hedge "approximately" is used in the foregoing description only
+	 * <br>
+	 * <br>The hedge "approximately" is used in the foregoing description only
 	 * because the next method is only approximately an unbiased source of
 	 * independently chosen bits.  If it were a perfect source of randomly
 	 * chosen bits, then the algorithm shown would choose {@code int}
 	 * values from the stated range with perfect uniformity.
-	 * <p>
+	 * <br>
 	 * The algorithm is slightly tricky.  It rejects values that would result
 	 * in an uneven distribution (due to the fact that 2^31 is not divisible
 	 * by n). The probability of a value being rejected depends on n.  The
 	 * worst case is n=2^30+1, for which the probability of a reject is 1/2,
 	 * and the expected number of iterations before the loop terminates is 2.
-	 * <p>
+	 * <br>
 	 * The algorithm treats the case where n is a power of two specially: it
 	 * returns the correct number of high-order bits from the underlying
 	 * pseudo-random number generator.  In the absence of special treatment,
@@ -648,14 +643,14 @@ public class WrappedRandom implements IRandom {
 	 * value from this random number generator's sequence. The general
 	 * contract of {@code nextLong} is that one {@code long} value is
 	 * pseudorandomly generated and returned.
-	 * <p>
-	 * <p>The method {@code nextLong} is implemented by class {@code Random}
+	 * <br>
+	 * <br>The method {@code nextLong} is implemented by class {@code Random}
 	 * as if by:
 	 * <pre> {@code
 	 * public long nextLong() {
 	 *   return ((long)next(32) << 32) + next(32);
 	 * }}</pre>
-	 * <p>
+	 * <br>
 	 * Because class {@code Random} uses a seed with only 48 bits,
 	 * this algorithm will not return all possible {@code long} values.
 	 *

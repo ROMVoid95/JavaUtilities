@@ -1,0 +1,53 @@
+publishing {
+	publications {
+		JavaUtilities(MavenPublication) {
+			groupId project.group
+			artifactId project.archivesBaseName
+			version project.version
+			
+			artifact javadocJar
+			
+			from components.java
+
+			pom {
+				name = "JavaUtilities"
+				url = "https://github.com/ROMVoid95/JavaUtilities"
+				packaging = "jar"
+				inceptionYear = "2020"
+				licenses {
+					license {
+						name = "MIT"
+						url = "https://raw.githubusercontent.com/ROMVoid95/JavaUtilities/stable/LICENSE"
+						distribution = "repo"
+					}
+				}
+				scm {
+					connection = "scm:git@github.com/ROMVoid95/JavaUtilities.git"
+					developerConnection = "scm:git@github.com/ROMVoid95/JavaUtilities.git"
+					url = "https://github.com/ROMVoid95/JavaUtilities"
+				}
+				issueManagement {
+					system = "github"
+					url = "https://github.com/ROMVoid95/JavaUtilities/issues"
+				}
+				organization {
+					name = "ReadOnly Development"
+					url = "https://romvoid.dev/"
+				}
+				developers {
+					developer {
+						id = "ROMVoid95"
+						name = "ROM"
+						email = "rom@romvoid.dev"
+					}
+				}
+			}
+		}
+	}
+	repositories {
+		maven {
+			name = "Remote"
+			url = "file://${projectDir}/repo"
+		}
+	}
+}

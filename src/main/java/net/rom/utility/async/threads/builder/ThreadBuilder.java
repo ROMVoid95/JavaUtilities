@@ -8,8 +8,8 @@ import net.rom.utility.annotations.DocsNeeded;
 
 @DocsNeeded
 public class ThreadBuilder implements ThreadFactory, Function<Runnable, Thread> {
-	private Consumer<Thread> builder = thread -> {
-	};
+	
+	private transient Consumer<Thread> builder = thread -> {};
 
 	@Override
 	public Thread apply(Runnable runnable) {

@@ -6,3 +6,8 @@ target
 *.iml
 .idea
 /.gradle/
+/build
+bin/*
+/bin/
+/repo
+/configs

@@ -1,6 +1,5 @@
 package net.rom.utility.reflections;
 
-
 public interface MethodAccesser<T, R> {
 	MethodFunction<R> access(T object);
 

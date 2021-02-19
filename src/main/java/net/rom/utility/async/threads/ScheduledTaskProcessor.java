@@ -14,9 +14,9 @@ import net.rom.utility.holding.objects.Switch;
 
 @DocsNeeded
 public class ScheduledTaskProcessor {
-	private final Map<Long, List<Runnable>> TASKS;
-	private final Consumer<Runnable> onExpired;
-	private boolean updated = false;
+	private transient final Map<Long, List<Runnable>> TASKS;
+	private transient final Consumer<Runnable> onExpired;
+	private transient boolean updated = false;
 
 	public ScheduledTaskProcessor(Consumer<Runnable> onExpired, String name) {
 		this.onExpired = onExpired;

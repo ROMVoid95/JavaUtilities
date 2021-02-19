@@ -8,23 +8,55 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
+import lombok.experimental.UtilityClass;
 import net.rom.utility.annotations.ExtensionClass;
 import net.rom.utility.async.threads.CompletableThread;
 
 @ExtensionClass
+
+/**
+ * Instantiates a new async.
+ */
+@UtilityClass
 public class Async {
+	
+	/**
+	 * Current.
+	 *
+	 * @return the thread
+	 */
 	public static Thread current() {
 		return Thread.currentThread();
 	}
 
+	/**
+	 * Future.
+	 *
+	 * @param <T>      the generic type
+	 * @param task     the task
+	 * @param callable the callable
+	 * @return the future
+	 */
 	public static <T> Future<T> future(String task, Callable<T> callable) {
 		return new CompletableThread<>(task, callable);
 	}
 
+	/**
+	 * Future.
+	 *
+	 * @param <T>      the generic type
+	 * @param callable the callable
+	 * @return the future
+	 */
 	public static <T> Future<T> future(Callable<T> callable) {
 		return new CompletableThread<>(callable);
 	}
 
+	/**
+	 * Sleep.
+	 *
+	 * @param milis the milis
+	 */
 	public static void sleep(long milis) {
 		try {
 			Thread.sleep(milis);
@@ -33,21 +65,14 @@ public class Async {
 		}
 	}
 
+	/**
+	 * Sleep.
+	 *
+	 * @param time the time
+	 * @param unit the unit
+	 */
 	public static void sleep(long time, TimeUnit unit) {
 		sleep(unit.toMillis(time));
-	}
-
-	/**
-	 * Start an Async single thread task every x seconds. Replacement for Timer.
-	 *
-	 * @param task         The name of the task to run
-	 * @param scheduled    The runnable.
-	 * @param everySeconds the amount of seconds the task will take to loop.
-	 */
-	@Deprecated
-	public static void task(String task, Runnable scheduled, int everySeconds) {
-		Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, task)).scheduleAtFixedRate(
-			scheduled, 0, everySeconds, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -63,24 +88,90 @@ public class Async {
 		executor.scheduleAtFixedRate(() -> scheduled.accept(executor), 0, everySeconds, TimeUnit.SECONDS);
 	}
 
+	/**
+	 * Task.
+	 *
+	 * @param task      the task
+	 * @param scheduled the scheduled
+	 * @param everyTime the every time
+	 * @param unit      the unit
+	 * @return the scheduled executor service
+	 */
 	public static ScheduledExecutorService task(String task, Consumer<ScheduledExecutorService> scheduled, long everyTime, TimeUnit unit) {
 		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, task));
 		executor.scheduleAtFixedRate(() -> scheduled.accept(executor), 0, everyTime, unit);
 		return executor;
 	}
+	
+	/**
+	 * Task.
+	 *
+	 * @param task      the task
+	 * @param scheduled the scheduled
+	 * @param delay     the delay
+	 * @param everyTime the every time
+	 * @param unit      the unit
+	 * @return the scheduled executor service
+	 */
+	public static ScheduledExecutorService task(String task, Consumer<ScheduledExecutorService> scheduled, long delay, long everyTime, TimeUnit unit) {
+		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, task));
+		executor.scheduleAtFixedRate(() -> scheduled.accept(executor), delay, everyTime, unit);
+		return executor;
+	}
 
+	/**
+	 * Task.
+	 *
+	 * @param task      the task
+	 * @param scheduled the scheduled
+	 * @param delay     the delay
+	 * @param everyTime the every time
+	 * @param unit      the unit
+	 * @return the scheduled executor service
+	 */
+	public static ScheduledExecutorService task(String task, Runnable scheduled, long delay, long everyTime, TimeUnit unit) {
+		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, task));
+		executor.scheduleAtFixedRate(scheduled, delay, everyTime, unit);
+		return executor;
+	}
+	
+	/**
+	 * Task.
+	 *
+	 * @param task      the task
+	 * @param scheduled the scheduled
+	 * @param everyTime the every time
+	 * @param unit      the unit
+	 * @return the scheduled executor service
+	 */
 	public static ScheduledExecutorService task(String task, Runnable scheduled, long everyTime, TimeUnit unit) {
 		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, task));
 		executor.scheduleAtFixedRate(scheduled, 0, everyTime, unit);
 		return executor;
 	}
 
+	/**
+	 * Task.
+	 *
+	 * @param scheduled the scheduled
+	 * @param everyTime the every time
+	 * @param unit      the unit
+	 * @return the scheduled executor service
+	 */
 	public static ScheduledExecutorService task(Consumer<ScheduledExecutorService> scheduled, long everyTime, TimeUnit unit) {
 		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 		executor.scheduleAtFixedRate(() -> scheduled.accept(executor), 0, everyTime, unit);
 		return executor;
 	}
 
+	/**
+	 * Task.
+	 *
+	 * @param scheduled the scheduled
+	 * @param everyTime the every time
+	 * @param unit      the unit
+	 * @return the scheduled executor service
+	 */
 	public static ScheduledExecutorService task(Runnable scheduled, long everyTime, TimeUnit unit) {
 		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 		executor.scheduleAtFixedRate(scheduled, 0, everyTime, unit);
@@ -88,7 +179,7 @@ public class Async {
 	}
 
 	/**
-	 * Creates a thread with a Runnable and immediately starts the Thread
+	 * Creates a thread with a Runnable and immediately starts the Thread.
 	 *
 	 * @param doAsync the Runnable that the thread will run
 	 * @return the Thread that is now executing the Runnable
@@ -99,11 +190,14 @@ public class Async {
 		return thread;
 	}
 
-	@Deprecated
-	public static Thread thread(int sleepMilis, Runnable doAfter) {
-		return thread(sleepMilis, TimeUnit.MILLISECONDS, doAfter);
-	}
-
+	/**
+	 * Thread.
+	 *
+	 * @param time    the time
+	 * @param unit    the unit
+	 * @param doAfter the do after
+	 * @return the thread
+	 */
 	public static Thread thread(long time, TimeUnit unit, Runnable doAfter) {
 		Objects.requireNonNull(doAfter);
 
@@ -114,13 +208,14 @@ public class Async {
 	}
 
 	/**
-	 *Use {@link thread(String name, long time, TimeUnit unit, Runnable doAfter)}
+	 * Creates a named thread with a Runnable.
+	 *
+	 * @param name    the name
+	 * @param time    the time
+	 * @param unit    the unit
+	 * @param doAfter the do after
+	 * @return the thread
 	 */
-	@Deprecated
-	public static Thread thread(String name, int sleepMilis, Runnable doAfter) {
-		return thread(name, sleepMilis, TimeUnit.MILLISECONDS, doAfter);
-	}
-
 	public static Thread thread(String name, long time, TimeUnit unit, Runnable doAfter) {
 		Objects.requireNonNull(doAfter);
 
@@ -131,7 +226,7 @@ public class Async {
 	}
 
 	/**
-	 * Creates a thread with a Runnable and immediately starts the Thread
+	 * Creates a thread with a Runnable and immediately starts the Thread.
 	 *
 	 * @param name    The thread name
 	 * @param doAsync The Runnable that the thread will run

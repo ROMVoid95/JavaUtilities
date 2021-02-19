@@ -1,7 +1,12 @@
 package net.rom.utility.collections;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -76,7 +81,7 @@ public class ArrayUtils {
 	 * representation contains their contents and so on. This method is designed for
 	 * converting multidimensional arrays to strings.
 	 * 
-	 * <p>
+	 * <br>
 	 * A linebreak is introduced after every array useful to visualize 2d
 	 * datastructures.
 	 * 
@@ -125,7 +130,7 @@ public class ArrayUtils {
 	 * original data structure. Be aware that the individual components are only
 	 * copied and still point to the same object.
 	 * 
-	 * <p>
+	 * <br>
 	 * If a true deep clone is required take a look at
 	 * {@link #deepArrayCopyClone(Object[])} instead.
 	 * 
@@ -584,7 +589,7 @@ public class ArrayUtils {
 	 * unsorted array but has a O(N) worst case time complexity. For efficient
 	 * searching consider {@link java.util.Arrays#binarySearch}.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the same array gets searched consistently you may also consider creating a
 	 * hash index to bring down the search to O(1).
 	 * 
@@ -614,7 +619,7 @@ public class ArrayUtils {
 	 * unsorted array but has a O(N) worst case time complexity. For efficient
 	 * searching consider {@link java.util.Arrays#binarySearch}.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the same array gets searched consistently you may also consider creating a
 	 * hash index to bring down the search to O(1).
 	 * 
@@ -636,7 +641,7 @@ public class ArrayUtils {
 	 * value is exactly in the middle. For efficient searching consider
 	 * {@link java.util.Arrays#binarySearch}.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the same array gets searched consistently you may also consider creating a
 	 * hash index to bring down the search to O(1).
 	 * 
@@ -672,7 +677,7 @@ public class ArrayUtils {
 	 * value is exactly in the middle. For efficient searching consider
 	 * {@link java.util.Arrays#binarySearch}.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the same array gets searched consistently you may also consider creating a
 	 * hash index to bring down the search to O(1).
 	 * 
@@ -694,10 +699,10 @@ public class ArrayUtils {
 	 * array will either point to the highest or lowest value, the second index to
 	 * the second highest/lowest ... found in the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If duplicate values exist in the array no stability guarantee is made.
 	 * 
-	 * <p>
+	 * <br>
 	 * ImplNote: TODO: check the performance of this method. An additional class can
 	 * be constructed holding index value pairs and sorting this omitting the
 	 * creation of a map. In turn this would mean that a new class must be created
@@ -726,10 +731,10 @@ public class ArrayUtils {
 	 * array will either point to the highest or lowest value, the second index to
 	 * the second highest/lowest ... found in the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If duplicate values exist in the array no stability guarantee is made.
 	 * 
-	 * <p>
+	 * <br>
 	 * ImplNote: TODO: check the performance of this method. An additional class can
 	 * be constructed holding index value pairs and sorting this omitting the
 	 * creation of a map. In turn this would mean that a new class must be created
@@ -758,10 +763,10 @@ public class ArrayUtils {
 	 * array will either point to the highest or lowest value, the second index to
 	 * the second highest/lowest ... found in the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If duplicate values exist in the array no stability guarantee is made.
 	 * 
-	 * <p>
+	 * <br>
 	 * ImplNote: TODO: check the performance of this method. An additional class can
 	 * be constructed holding index value pairs and sorting this omitting the
 	 * creation of a map. In turn this would mean that a new class must be created
@@ -790,10 +795,10 @@ public class ArrayUtils {
 	 * array will either point to the highest or lowest value, the second index to
 	 * the second highest/lowest ... found in the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If duplicate values exist in the array no stability guarantee is made.
 	 * 
-	 * <p>
+	 * <br>
 	 * ImplNote: TODO: check the performance of this method. An additional class can
 	 * be constructed holding index value pairs and sorting this omitting the
 	 * creation of a map. In turn this would mean that a new class must be created
@@ -822,10 +827,10 @@ public class ArrayUtils {
 	 * array will either point to the highest or lowest value, the second index to
 	 * the second highest/lowest ... found in the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If duplicate values exist in the array no stability guarantee is made.
 	 * 
-	 * <p>
+	 * <br>
 	 * ImplNote: TODO: check the performance of this method. An additional class can
 	 * be constructed holding index value pairs and sorting this omitting the
 	 * creation of a map. In turn this would mean that a new class must be created
@@ -855,10 +860,10 @@ public class ArrayUtils {
 	 * array will either point to the highest or lowest value, the second index to
 	 * the second highest/lowest ... found in the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If duplicate values exist in the array no stability guarantee is made.
 	 * 
-	 * <p>
+	 * <br>
 	 * ImplNote: TODO: check the performance of this method. An additional class can
 	 * be constructed holding index value pairs and sorting this omitting the
 	 * creation of a map. In turn this would mean that a new class must be created
@@ -888,10 +893,10 @@ public class ArrayUtils {
 	 * array will either point to the highest or lowest value, the second index to
 	 * the second highest/lowest ... found in the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If duplicate values exist in the array no stability guarantee is made.
 	 * 
-	 * <p>
+	 * <br>
 	 * ImplNote: TODO: check the performance of this method. An additional class can
 	 * be constructed holding index value pairs and sorting this omitting the
 	 * creation of a map. In turn this would mean that a new class must be created
@@ -920,10 +925,10 @@ public class ArrayUtils {
 	 * array will either point to the highest or lowest value, the second index to
 	 * the second highest/lowest ... found in the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If duplicate values exist in the array no stability guarantee is made.
 	 * 
-	 * <p>
+	 * <br>
 	 * ImplNote: TODO: check the performance of this method. An additional class can
 	 * be constructed holding index value pairs and sorting this omitting the
 	 * creation of a map. In turn this would mean that a new class must be created
@@ -950,7 +955,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the minimum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the minimum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -982,7 +987,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the minimum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the minimum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1014,7 +1019,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the minimum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the minimum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1046,7 +1051,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the minimum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the minimum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1060,25 +1065,25 @@ public class ArrayUtils {
 
 		if (array.length == 0) {
 			return -1;
-		} else if (array.length == 1) {
+		} else if (array.length > 1) {
+			int minIndex = 0;
+			int min = array[0];
+			for (int i = 1; i < array.length; i++) {
+				if (array[i] < min) {
+					min = array[i];
+					minIndex = i;
+				}
+			}
+			return minIndex;
+		} else {
 			return 0;
 		}
-
-		int minIndex = 0;
-		int min = array[0];
-		for (int i = 1; i < array.length; i++) {
-			if (array[i] < min) {
-				min = array[i];
-				minIndex = i;
-			}
-		}
-		return minIndex;
 	}
 
 	/**
 	 * Find the index of the minimum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the minimum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1092,25 +1097,25 @@ public class ArrayUtils {
 
 		if (array.length == 0) {
 			return -1;
-		} else if (array.length == 1) {
+		} else if (array.length > 1) {
+			int minIndex = 0;
+			long min = array[0];
+			for (int i = 1; i < array.length; i++) {
+				if (array[i] < min) {
+					min = array[i];
+					minIndex = i;
+				}
+			}
+			return minIndex;
+		} else {
 			return 0;
 		}
-
-		int minIndex = 0;
-		long min = array[0];
-		for (int i = 1; i < array.length; i++) {
-			if (array[i] < min) {
-				min = array[i];
-				minIndex = i;
-			}
-		}
-		return minIndex;
 	}
 
 	/**
 	 * Find the index of the minimum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the minimum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1124,25 +1129,25 @@ public class ArrayUtils {
 
 		if (array.length == 0) {
 			return -1;
-		} else if (array.length == 1) {
+		} else if (array.length > 1) {
+			int minIndex = 0;
+			float min = array[0];
+			for (int i = 1; i < array.length; i++) {
+				if (array[i] < min) {
+					min = array[i];
+					minIndex = i;
+				}
+			}
+			return minIndex;
+		} else {
 			return 0;
 		}
-
-		int minIndex = 0;
-		float min = array[0];
-		for (int i = 1; i < array.length; i++) {
-			if (array[i] < min) {
-				min = array[i];
-				minIndex = i;
-			}
-		}
-		return minIndex;
 	}
 
 	/**
 	 * Find the index of the minimum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the minimum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1265,7 +1270,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the maximum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the maximum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1297,7 +1302,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the maximum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the maximum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1329,7 +1334,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the maximum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the maximum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1361,7 +1366,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the maximum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the maximum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1393,7 +1398,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the maximum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the maximum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1425,7 +1430,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the maximum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the maximum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
@@ -1457,7 +1462,7 @@ public class ArrayUtils {
 	/**
 	 * Find the index of the maximum value of the array.
 	 * 
-	 * <p>
+	 * <br>
 	 * If the maximum value is present multiple times the first occurrence will be
 	 * returned.
 	 * 
