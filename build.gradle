@@ -12,7 +12,7 @@ def majorJavaVersion = javaVersion.getMajorVersion()
 def majorJavaVersionInt = majorJavaVersion.toInteger()
 
 group = 'net.rom.utility'
-version = '3.0.0'
+version = '3.0.2'
 description = 'Java Utilities'
 
 sourceCompatibility = 1.8
@@ -21,18 +21,17 @@ targetCompatibility = 1.8
 repositories {
     mavenLocal()
 	mavenCentral()
-	jcenter()
     maven {
-        url = 'http://repo.maven.apache.org/maven2'
+        url = 'https://repo.maven.apache.org/maven2'
     }
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok:1.18.16'
-	annotationProcessor 'org.projectlombok:lombok:1.18.16'
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
 	
-	testCompileOnly 'org.projectlombok:lombok:1.18.16'
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+	testCompileOnly 'org.projectlombok:lombok:1.18.20'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 	
 	implementation 'com.fasterxml.jackson.core:jackson-core:2.12.1'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
@@ -43,15 +42,11 @@ dependencies {
 }
 
 gradle.afterProject {
-	def url = new URL(
-			"https://raw.githubusercontent.com/ReadOnlyDevelopment/Misc/master/.editorconfig"
-	)
+	def url = "https://raw.githubusercontent.com/ReadOnlyDevelopment/Misc/master/.editorconfig"
 	def file = new File(".editorconfig")
-
-	url.withInputStream { input ->
-		file.withOutputStream {
-			it << input
-		}
+	
+	if(!(file.exists())) {
+		new URL(url).withInputStream{ i -> file.withOutputStream{ it << i }}
 	}
 }
 

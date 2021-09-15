@@ -88,6 +88,11 @@ public class Async {
 		executor.scheduleAtFixedRate(() -> scheduled.accept(executor), 0, everySeconds, TimeUnit.SECONDS);
 	}
 
+	public static ScheduledExecutorService task(String task) {
+		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, task));
+		return executor;
+	}
+	
 	/**
 	 * Task.
 	 *
